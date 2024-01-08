@@ -1,0 +1,60 @@
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        int x =matrix.size();  //row
+        int y = matrix[0].size();  //column
+        
+        int dir = 0;
+        
+        int top = 0;
+        int down = x-1;
+        int left = 0;
+        int right = y-1;
+        
+        
+        vector<int> result;
+        
+        while(top <= down && left <= right) {
+            
+            if(dir == 0) {
+                
+                for(int k = left; k<= right;k++){
+                    result.push_back(matrix[top][k]);
+                }
+                top++;
+            }
+            
+            if(dir == 1) {
+                
+                for(int k= top; k<= down; k++) {
+                    result.push_back(matrix[k][right]);
+                }
+                
+                right--;
+            }
+            
+            if(dir == 2) {
+                for(int k = right;k >= left; k--) {
+                    result.push_back(matrix[down][k]);
+                }
+                
+                down--;
+            }
+            
+            if(dir == 3) {
+                
+                for(int k = down; k>=top; k--) {
+                    result.push_back(matrix[k][left]);
+                }
+                
+                left++;
+            }
+            
+            dir++;
+            
+            if(dir == 4)
+                dir = 0;
+        }
+        return result;  
+    }
+};
