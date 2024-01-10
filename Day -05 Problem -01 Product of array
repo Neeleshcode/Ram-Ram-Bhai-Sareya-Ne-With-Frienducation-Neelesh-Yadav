@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        
+        int n = nums.size();
+        vector<int> opt;
+        if(n<1)
+            return opt;
+        int prod = 1;
+        for(int k=0;k<n;++k){
+            prod *= nums[k];
+            opt.push_back(prod);
+        }
+        
+        //traversing
+        prod = 1;
+        for(int k =n-1;k>0;--k){
+            opt[k]=opt[k-1]*prod;
+            prod*=nums[k];
+        }
+        opt[0]=prod;
+        
+        return opt;
+        
+    }
+};
