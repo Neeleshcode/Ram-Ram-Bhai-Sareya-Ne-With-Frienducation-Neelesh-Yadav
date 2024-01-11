@@ -1,0 +1,28 @@
+class Solution {
+public:
+    bool isValidSudoku(vector<vector<char>>& board) {
+        
+        set<string>s;
+        
+        for(int r = 0;r<9;r++){
+            for(int c=0;c<9;c++){
+                if(board[r][c]!='.'){
+                    string row = "row"+to_string(r)+board[r][c];
+                    string col = "col"+to_string(c)+board[r][c];
+                    string box = "box"+to_string((r/3)*3+(c/3))+board[r][c];
+                    
+                    if(s.find(row)==s.end()&& s.find(col)==s.end()&&s.find(box)==s.end()){
+                        s.insert(row);
+                        s.insert(col);
+                        s.insert(box);
+                    }
+                    else{
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+        
+    }
+};
