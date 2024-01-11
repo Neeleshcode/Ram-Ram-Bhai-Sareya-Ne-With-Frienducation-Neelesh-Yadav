@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int findPairs(vector<int>& nums, int k) {
+        if(k<0)
+            return 0;
+        unordered_map<int, int> map;
+        for(int n : nums) 
+            map[n]++;
+        int count = 0;
+        for(auto p :map){
+            if((!k && p.second >1) || (k && map.count(p.first + k)))
+                ++count;
+        }
+        return count;
+    }
+};
