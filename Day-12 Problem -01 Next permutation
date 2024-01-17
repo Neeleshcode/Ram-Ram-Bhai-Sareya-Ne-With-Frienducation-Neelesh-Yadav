@@ -1,0 +1,32 @@
+class Solution {
+public:
+    void nextPermutation(vector<int>& nums) {
+
+        if(nums.size()==1){
+            return;
+        }
+
+        int index1;
+        for(int x=nums.size()-2;x>=0;x--){
+            if(nums[x]<nums[x+1]){
+                index1=x;
+                break;
+            }
+        }
+        if(index1<0){
+            reverse(nums.begin(),nums.end());
+        }else{
+            int index2=0;
+            for(int x =nums.size()-1;x>=0;x--){
+                if(nums[x]>nums[index1]){
+                    index2=x;
+                break;
+                }
+            }
+            swap(nums[index1],nums[index2]);
+            reverse(nums.begin()+index1+1,nums.end());
+        }
+
+        
+    }
+};
