@@ -1,0 +1,28 @@
+class Solution {
+public:
+    void solve(string digits, string opt, int idx, string m[10], vector<string>&answer){
+        //  base case
+        if(idx>= digits.length()){
+            answer.push_back(opt);
+            return;
+        }
+        int dig = digits[idx] - '0';
+        string letterCom = m[dig];
+
+        for(int x  = 0 ; x<letterCom.length();x++){
+            opt.push_back(letterCom[x]);
+            solve(digits,opt,idx+1,m,answer);
+            opt.pop_back();  
+        }
+    }
+    vector<string> letterCombinations(string digits) {
+        vector<string>answer;
+        if(digits.length()==0){
+            return answer;
+        }
+        string opt = "";
+        string m[10] = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        solve(digits,opt,0,m,answer);
+        return answer;
+    }
+};
