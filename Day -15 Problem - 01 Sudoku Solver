@@ -1,0 +1,35 @@
+class Solution {
+public:
+
+     bool isValid(vector<vector<char>> &board, int r, int c, char z){
+        for(int x=0;x<9;x++){
+            if(board[x][c]==z) return false;
+            if(board[r][x]==z) return false;
+            if(board[3*(r/3)+x/3][3*(c/3)+x%3]==z) return false;
+        }
+    return true;
+    }
+
+    bool solve(int p, int q, vector<vector<char>> &board){
+        for(int x=0;x<p;x++){
+            for(int y=0;y<q;y++){
+                if(board[x][y]=='.'){
+                    for(char z='1';z<='9';z++){
+                        if(isValid(board,x,y,z)){
+                            board[x][y]=z;
+                            if(solve(p,q,board)==true) return true;
+                            else board[x][y]='.';
+                        }
+                    }
+                return false;
+                }
+            }
+        }
+    return true;
+    }
+    
+    void solveSudoku(vector<vector<char>>& board){
+        int p=board.size(), q=board[0].size();
+        solve(p,q,board);        
+    }
+};
