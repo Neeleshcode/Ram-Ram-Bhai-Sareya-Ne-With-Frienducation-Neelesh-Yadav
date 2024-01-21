@@ -1,0 +1,22 @@
+class Solution {
+public:
+    void help(int x,vector<int>&nums,vector<int>&t,vector<vector<int>>& a){
+        if(x==nums.size()){
+            a.push_back(t);
+        }
+        else
+        {
+            t.push_back(nums[x]);
+            help(x+1,nums,t,a);
+            t.pop_back();
+            help(x+1,nums,t,a);
+        }
+    }
+    vector<vector<int>> subsets(vector<int>& nums) {
+        
+        vector<vector<int>> a;
+        vector<int> t;
+        help(0,nums,t,a);
+        return a;
+    }
+};
